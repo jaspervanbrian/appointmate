@@ -6,24 +6,23 @@
     <h3 class="h5 mb-3 fw-normal">Register as a Patient</h1>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "patients/shared/error_messages", resource: resource %>
       <div class="form-floating mb-3">
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", id: "floatingFirstName", class:"form-control", placeholder: "" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", id: "floatingFirstName", class:"form-control", placeholder: "", required: true %>
         <label for="floatingFirstName">First name</label>
       </div>
 
       <div class="form-floating mb-3">
-        <%= f.text_field :last_name, autocomplete: "last_name", id: "floatingLastName", class:"form-control", placeholder: "" %>
+        <%= f.text_field :last_name, autocomplete: "last_name", id: "floatingLastName", class:"form-control", placeholder: "", required: true %>
         <label for="floatingLastName">Last name</label>
       </div>
 
       <div class="form-floating mb-3">
-        <%= f.email_field :email, autocomplete: "email", id: "floatingInput", class:"form-control", placeholder: "name@example.com" %>
+        <%= f.email_field :email, autocomplete: "email", id: "floatingInput", class:"form-control", placeholder: "", required: true %>
         <label for="floatingInput">Email address</label>
       </div>
 
       <div class="form-floating mb-3">
-        <%= f.password_field :password, autocomplete: "current-password", id: "floatingPassword", class: "form-control", placeholder: "" %>
+        <%= f.password_field :password, autocomplete: "current-password", id: "floatingPassword", class: "form-control", placeholder: "", required: true %>
         <label for="floatingPassword">
           Password
           <% if @minimum_password_length %>
@@ -38,6 +37,8 @@
           Password Confirmation
         </label>
       </div>
+
+      <%= render "patients/shared/error_messages", resource: resource %>
 
       <div class="actions mb-3">
         <%= f.submit "Sign up", class: "btn btn-primary w-100 py-2" %>
