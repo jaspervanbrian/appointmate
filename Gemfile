@@ -71,3 +71,7 @@ gem "devise", "~> 4.9"
 gem "sassc-rails", "~> 2.1"
 
 gem "bootstrap", "~> 5.3"
+
+gem "sidekiq", "~> 7.2.4"
+
+gem "name_of_person", "~> 1.1"

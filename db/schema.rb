@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_155110) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_183321) do
+  create_table "booking_types", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "color", default: "#000000"
+    t.integer "duration"
+    t.boolean "payment_required", default: false
+    t.integer "price"
+    t.integer "patient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_booking_types_on_patient_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean "customer_paid", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "booking_type_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -39,8 +65,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_155110) do
     t.string "postcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "booking_link"
+    t.index ["booking_link"], name: "index_patients_on_booking_link", unique: true
     t.index ["email"], name: "index_patients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "booking_types", "patients"
 end

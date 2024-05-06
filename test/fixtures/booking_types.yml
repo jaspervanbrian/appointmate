@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  color: MyString
+  duration: 1
+  payment_required: false
+  price: 1
+  patient: one
+
+two:
+  name: MyString
+  type: 
+  color: MyString
+  duration: 1
+  payment_required: false
+  price: 1
+  patient: two

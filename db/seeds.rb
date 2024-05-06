@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Patient.create(
+  first_name: "Jasper",
+  last_name: "Martin",
+  email: "jaspervanbrianmartin@gmail.com",
+  password: "secret",
+  password_confirmation: "secret"
+)
