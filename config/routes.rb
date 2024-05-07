@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :bookings
   devise_for :doctors
   devise_for :patients, controllers: {
-    registrations: 'patients/registrations'
+    sessions: 'patients/sessions',
+    registrations: 'patients/registrations',
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,7 +13,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   authenticated :patient do
-    root to: "home#dashboard", as: :authenticated_root
+    root to: redirect("/patients/edit"), as: :authenticated_patient_root
+    get "/", to: "home#dashboard", as: "patient_dashboard"
   end
 
   # Defines the root path route ("/")

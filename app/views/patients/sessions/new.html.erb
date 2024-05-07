@@ -4,7 +4,7 @@
       <h1 class="text-primary my-4"><i class="fas fa-star-of-life me-3"></i>AppointMate</h1>
     </a>
     <h3 class="h5 mb-3 fw-normal">Welcome Patient! Please sign in</h1>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
       <div class="form-floating mb-3">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "floatingInput", class:"form-control", placeholder: "name@example.com" %>
         <label for="floatingInput">Email address</label>

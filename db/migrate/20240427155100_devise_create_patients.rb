@@ -38,8 +38,14 @@ class DeviseCreatePatients < ActiveRecord::Migration[7.1]
       t.string :sex
       t.string :mobile_number
       t.string :street_address
-      t.string :suburb
-      t.string :postcode
+      t.string :suburb_address
+      t.string :postcode_address
+      t.string :state_address
+      t.string :medicare_card_number
+      t.string :medicare_individual_reference_number
+      t.string :medicare_card_expiry_date
+      t.string :private_health_fund
+      t.string :private_health_fund_number
 
       t.timestamps null: false
     end

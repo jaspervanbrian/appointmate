@@ -1,0 +1,26 @@
+<div class="form-floating mb-3">
+  <%= f.text_field :mobile_number, autocomplete: "mobile_number", id: "floatingMobileNumber", class:"form-control", placeholder: "" %>
+  <label for="floatingMobileNumber">Mobile Number</label>
+</div>
+
+<p>Address</p>
+
+<div class="form-floating mb-3">
+  <%= f.text_field :street_address, autocomplete: "street_address", id: "floatingStreet", class:"form-control", placeholder: "" %>
+  <label for="floatingStreet">Street Name</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.text_field :suburb_address, autocomplete: "suburb", id: "floatingSuburb", class:"form-control", placeholder: "" %>
+  <label for="floatingSuburb">Suburb</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.text_field :postcode_address, autocomplete: "postcode", id: "floatingPostcode", class:"form-control", placeholder: "" %>
+  <label for="floatingPostcode">Postcode</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.select :state_address, ["NSW", "VIC",  "QLD",  "WA", "SA",  "TAS", "NT", "ACT"], { include_blank: true }, { id: "floatingStateAddress", class:"form-control" } %>
+  <label for="floatingStateAddress">State</label>
+</div>

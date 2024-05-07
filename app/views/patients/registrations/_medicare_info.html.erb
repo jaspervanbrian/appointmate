@@ -1,0 +1,14 @@
+<div class="form-floating mb-3">
+  <%= f.text_field :medicare_card_number, id: "floatingMedicareCardNumber", class:"form-control", placeholder: "" %>
+  <label for="floatingMedicareCardNumber">10-digit Medicare card number</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.text_field :medicare_individual_reference_number, id: "floatingMedicareIRN", class:"form-control", placeholder: "" %>
+  <label for="floatingMedicareIRN">Medicare IRN (Single number that appears before your name)</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.month_field :medicare_card_expiry_date, id: "floatingMedicareCardExpiryDate", class:"form-control", placeholder: "" %>
+  <label for="floatingMedicareCardExpiryDate">Card expiry date</label>
+</div>

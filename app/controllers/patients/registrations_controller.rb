@@ -4,6 +4,8 @@ class Patients::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+  layout 'patients', except: [:create]
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -54,8 +56,14 @@ class Patients::RegistrationsController < Devise::RegistrationsController
       :sex,
       :mobile_number,
       :street_address,
-      :suburb,
-      :postcode
+      :suburb_address,
+      :postcode_address,
+      :state_address,
+      :medicare_card_number,
+      :medicare_individual_reference_number,
+      :medicare_card_expiry_date,
+      :private_health_fund,
+      :private_health_fund_number
     ])
   end
 

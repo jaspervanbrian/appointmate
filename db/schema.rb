@@ -61,8 +61,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_183321) do
     t.string "sex"
     t.string "mobile_number"
     t.string "street_address"
-    t.string "suburb"
-    t.string "postcode"
+    t.string "suburb_address"
+    t.string "postcode_address"
+    t.string "state_address"
+    t.string "medicare_card_number"
+    t.string "medicare_individual_reference_number"
+    t.string "medicare_card_expiry_date"
+    t.string "private_health_fund"
+    t.string "private_health_fund_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "booking_link"

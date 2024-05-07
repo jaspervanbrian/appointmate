@@ -1,0 +1,22 @@
+<div class="form-floating mb-3">
+  <%= f.email_field :email, autocomplete: "email", id: "floatingInput", class:"form-control", placeholder: "", required: true %>
+  <label for="floatingInput">Email address</label>
+</div>
+
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<% end %>
+
+<div class="form-floating mb-3">
+  <%= f.password_field :password, autocomplete: "new-password", id: "floatingPassword", class: "form-control", placeholder: "" %>
+  <label for="floatingPassword">
+    New Password <i>(leave blank if you don't want to change it)</i>
+  </label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "floatingPasswordConfirmation", class: "form-control", placeholder: "" %>
+  <label for="floatingPasswordConfirmation">
+    Confirm New Password
+  </label>
+</div>

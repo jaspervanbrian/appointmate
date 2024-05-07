@@ -1,0 +1,22 @@
+<div class="modal fade" id="submit-profile-changes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="submitProfileChangesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="submitProfileChangesLabel">Save Profile Changes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating mb-3">
+          <%= f.password_field :current_password, autocomplete: "current-password", id: "floatingCurrentPassword", class: "form-control", placeholder: "", required: true %>
+          <label for="floatingCurrentPassword">
+            Please enter your current password to authorize changes
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

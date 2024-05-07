@@ -1,0 +1,19 @@
+<div class="form-floating mb-3">
+  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", id: "floatingFirstName", class:"form-control", placeholder: "", required: true %>
+  <label for="floatingFirstName">First name</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.text_field :last_name, autocomplete: "last_name", id: "floatingLastName", class:"form-control", placeholder: "", required: true %>
+  <label for="floatingLastName">Last name</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.select :sex, ["Male", "Female"], { include_blank: true }, { id: "floatingSex", class:"form-control" } %>
+  <label for="floatingSex">Sex</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.date_field :birthday, id: "floatingBirthday", class:"form-control" %>
+  <label for="floatingBirthday">Birthday</label>
+</div>
