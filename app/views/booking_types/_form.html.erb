@@ -1,8 +1,52 @@
 <%= form_with(model: booking_type) do |form| %>
-  <% if booking_type.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(booking_type.errors.count, "error") %> prohibited this booking_type from being saved:</h2>
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, autofocus: true, autocomplete: "name", id: "name", class:"form-control", placeholder: "", required: true %>
+    <label for="name">Name</label>
+  </div>
 
+  <div class="form-floating mb-3">
+    <%= form.text_field :type, autocomplete: "type", id: "type", class:"form-control", placeholder: "", required: true %>
+    <label for="type">Type</label>
+  </div>
+
+  <div class="mb-3">
+    <p>Description</p>
+    <%= form.rich_text_area :description, autocomplete: "description", id: "description", class:"form-control", placeholder: "", required: true %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :color, autocomplete: "color", id: "color", class:"form-control", placeholder: "", required: true %>
+    <label for="color">Color</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.number_field :duration, autocomplete: "duration", id: "duration", class:"form-control", placeholder: "", required: true %>
+    <label for="duration">Duration</label>
+  </div>
+
+  <div class="form-check text-start my-3">
+    <%= form.check_box :payment_required, class: "form-check-input", id: "paymentRequired", value: "payment-required" %>
+    <label for="paymentRequired" class="form-check-label">Payment Required?</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.number_field :price, autocomplete: "price", id: "price", class:"form-control", placeholder: "", required: true %>
+    <label for="price">Price</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :patient_id, autocomplete: "patient_id", id: "patient_id", class:"form-control", placeholder: "", required: true %>
+    <label for="patient_id">Patient</label>
+  </div>
+
+  <% if booking_type.errors.any? %>
+    <div id="error_explanation" data-turbo-cache="false">
+      <p class="text-danger">
+        <%= I18n.t("errors.messages.not_saved",
+                   count: booking_type.errors.count,
+                   resource: booking_type.class.model_name.human.downcase)
+                 %>
+      </p>
       <ul>
         <% booking_type.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,47 +55,7 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :type, style: "display: block" %>
-    <%= form.text_field :type %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.rich_text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :color, style: "display: block" %>
-    <%= form.text_field :color %>
-  </div>
-
-  <div>
-    <%= form.label :duration, style: "display: block" %>
-    <%= form.number_field :duration %>
-  </div>
-
-  <div>
-    <%= form.label :payment_required, style: "display: block" %>
-    <%= form.check_box :payment_required %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div>
-    <%= form.label :patient_id, style: "display: block" %>
-    <%= form.text_field :patient_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="actions mb-3">
+    <%= form.submit nil, class: "btn btn-primary py-2"%>
   </div>
 <% end %>

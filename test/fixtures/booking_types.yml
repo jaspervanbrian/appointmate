@@ -7,7 +7,7 @@ one:
   duration: 1
   payment_required: false
   price: 1
-  patient: one
+  hospital: one
 
 two:
   name: MyString
@@ -16,4 +16,4 @@ two:
   duration: 1
   payment_required: false
   price: 1
-  patient: two
+  hospital: two

@@ -4,7 +4,7 @@ class Patients::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
-  layout 'patients', except: [:create]
+  layout 'patients', except: [:new, :create]
 
   # GET /resource/sign_up
   # def new
@@ -54,6 +54,7 @@ class Patients::RegistrationsController < Devise::RegistrationsController
       :last_name,
       :birthday,
       :sex,
+      :booking_link,
       :mobile_number,
       :street_address,
       :suburb_address,

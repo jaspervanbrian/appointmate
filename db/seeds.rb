@@ -15,3 +15,17 @@ Patient.create(
   password: "secret",
   password_confirmation: "secret"
 )
+
+Hospital.create(
+  name: "Royal Prince Alfred Hospital",
+  booking_link: "rpa",
+  landline_number: "02 9515 6111",
+  fax: "02 9515 6133",
+  street_address: "50 Missenden Rd",
+  suburb_address: "Camperdown",
+  postcode_address: "NSW",
+  state_address: "2050",
+  email: "SLHD-RPASupportUnit@health.nsw.gov.au",
+  password: "secret",
+  password_confirmation: "secret"
+)

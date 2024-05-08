@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :booking_types
-  resources :bookings
-  devise_for :doctors
+  devise_for :hospitals
   devise_for :patients, controllers: {
     sessions: 'patients/sessions',
     registrations: 'patients/registrations',
@@ -16,6 +14,16 @@ Rails.application.routes.draw do
     root to: redirect("/patients/edit"), as: :authenticated_patient_root
     get "/", to: "home#dashboard", as: "patient_dashboard"
   end
+
+  authenticated :hospital do
+    root to: redirect("/hospitals/edit"), as: :authenticated_hospital_root
+    get "/", to: "home#dashboard", as: "hospital_dashboard"
+  end
+
+  resources :booking_types
+  resources :bookings
+
+  get ":booking_link", to: "hospitals#show", as: :hospital
 
   # Defines the root path route ("/")
   root "home#index"
