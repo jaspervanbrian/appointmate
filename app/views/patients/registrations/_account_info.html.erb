@@ -1,6 +1,11 @@
 <div class="form-floating mb-3">
-  <%= f.email_field :email, autocomplete: "email", id: "floatingInput", class:"form-control", placeholder: "", required: true %>
-  <label for="floatingInput">Email address</label>
+  <%= f.text_field :booking_link, autocomplete: "booking_Link", id: "floatingBookingLink", class:"form-control", placeholder: "" %>
+  <label for="floatingBookingLink">Booking Link</label>
+</div>
+
+<div class="form-floating mb-3">
+  <%= f.email_field :email, autocomplete: "email", id: "floatingEmail", class:"form-control", placeholder: "", required: true %>
+  <label for="floatingEmail">Email address</label>
 </div>
 
 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
