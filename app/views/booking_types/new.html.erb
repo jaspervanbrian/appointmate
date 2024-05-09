@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center justify-content-between">
         <h1 class="fw-bold mb-6">Create a booking type</h1>
         <% if current_patient&.booking_link? %>
-          <%= link_to "View live page", patient_path(booking_link: current_patient.booking_link), class: "text-gray" %>
+          <%= link_to "View live page", hospital_path(booking_link: current_patient.booking_link), class: "text-gray" %>
         <% end%>
       </div>
 

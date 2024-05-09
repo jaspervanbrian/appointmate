@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-class Patients::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
-
-  layout 'patients', except: [:new, :create]
+class Hospitals::RegistrationsController < Devise::RegistrationsController
+  layout 'hospitals'
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -40,32 +39,17 @@ class Patients::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
+  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
-  end
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [
-      :first_name,
-      :last_name,
-      :birthday,
-      :sex,
-      :mobile_number,
-      :street_address,
-      :suburb_address,
-      :postcode_address,
-      :state_address,
-      :medicare_card_number,
-      :medicare_individual_reference_number,
-      :medicare_card_expiry_date,
-      :private_health_fund,
-      :private_health_fund_number
-    ])
-  end
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

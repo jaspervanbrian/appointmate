@@ -1,5 +1,12 @@
-class PatientsController < ApplicationController
+class HospitalsController < ApplicationController
+  before_action :hospital
+
   def show
-    @hospital = Hospital.find_by(booking_link: params[:booking_link])
+  end
+
+  private
+
+  def hospital
+    @hospital ||= Hospital.find_by(booking_link: params[:booking_link])
   end
 end

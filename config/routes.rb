@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :hospitals
+  devise_for :hospitals, controllers: {
+    sessions: 'hospitals/sessions',
+    registrations: 'hospitals/registrations',
+  }
+
   devise_for :patients, controllers: {
     sessions: 'patients/sessions',
     registrations: 'patients/registrations',
@@ -16,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :hospital do
-    root to: redirect("/hospitals/edit"), as: :authenticated_hospital_root
+    root to: "home#dashboard", as: :authenticated_hospital_root
     get "/", to: "home#dashboard", as: "hospital_dashboard"
   end
 

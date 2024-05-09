@@ -3,4 +3,8 @@ class Hospital < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  has_many :booking_types
+
+  validates :booking_link, presence: true
 end

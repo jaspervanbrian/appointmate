@@ -1,6 +1,6 @@
 class BookingTypesController < ApplicationController
   before_action :set_booking_type, only: %i[ show edit update destroy ]
-  layout 'patients'
+  layout 'hospitals'
 
   # GET /booking_types or /booking_types.json
   def index
