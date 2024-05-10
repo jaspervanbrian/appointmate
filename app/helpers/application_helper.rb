@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def can_render_hospital_navbar?
+    !(current_page?("/hospitals/edit") || current_page?("/hospitals/sign_in"))
+  end
+
   def flash_classes(flash_type)
     flash_base = "px-2 py-4 mx-auto font-sans font-medium text-center text-white"
     {

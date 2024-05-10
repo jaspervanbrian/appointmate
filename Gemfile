@@ -75,3 +75,5 @@ gem "bootstrap", "~> 5.3"
 gem "sidekiq", "~> 7.2.4"
 
 gem "name_of_person", "~> 1.1"
+
+gem "stripe", "~> 11.4"

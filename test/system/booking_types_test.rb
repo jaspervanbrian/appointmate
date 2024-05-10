@@ -17,7 +17,7 @@ class BookingTypesTest < ApplicationSystemTestCase
     fill_in "Color", with: @booking_type.color
     fill_in "Duration", with: @booking_type.duration
     fill_in "Name", with: @booking_type.name
-    fill_in "Patient", with: @booking_type.patient_id
+    fill_in "Hospital", with: @booking_type.hospital_id
     check "Payment required" if @booking_type.payment_required
     fill_in "Price", with: @booking_type.price
     fill_in "Type", with: @booking_type.type
@@ -34,7 +34,7 @@ class BookingTypesTest < ApplicationSystemTestCase
     fill_in "Color", with: @booking_type.color
     fill_in "Duration", with: @booking_type.duration
     fill_in "Name", with: @booking_type.name
-    fill_in "Patient", with: @booking_type.patient_id
+    fill_in "Hospital", with: @booking_type.hospital_id
     check "Payment required" if @booking_type.payment_required
     fill_in "Price", with: @booking_type.price
     fill_in "Type", with: @booking_type.type

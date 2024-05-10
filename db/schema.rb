@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_181423) do
     t.string "name"
     t.string "type"
     t.string "color"
+    t.string "location"
     t.integer "duration"
     t.boolean "payment_required"
     t.integer "price"

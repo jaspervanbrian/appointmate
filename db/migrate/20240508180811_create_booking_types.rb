@@ -4,6 +4,7 @@ class CreateBookingTypes < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :type
       t.string :color
+      t.string :location
       t.integer :duration
       t.boolean :payment_required
       t.integer :price

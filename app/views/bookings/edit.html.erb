@@ -1,10 +1,10 @@
-<h1>Editing booking</h1>
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between mb-6 flex-wrap">
+    <h1 class="font-bold text-3xl mb-6">Edit booking</h1>
+    <% if @booking.persisted? %>
+    <%= button_to 'Destroy', @booking, method: :delete, class: "text-red-700 underline", data: { turbo_confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
 
-<%= render "form", booking: @booking %>
-
-<br>
-
-<div>
-  <%= link_to "Show this booking", @booking %> |
-  <%= link_to "Back to bookings", bookings_path %>
+  <%= render 'form', booking: @booking %>
 </div>

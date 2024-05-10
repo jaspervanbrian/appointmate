@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show edit update destroy ]
+  layout 'hospitals'
 
   # GET /bookings or /bookings.json
   def index
@@ -13,6 +14,8 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @hospital = Hospital.find_by(booking_link: params[:booking_link])
+    @booking_type = @hospital.booking_types.find(params[:booking_type])
   end
 
   # GET /bookings/1/edit

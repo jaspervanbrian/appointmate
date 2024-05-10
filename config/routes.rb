@@ -20,14 +20,17 @@ Rails.application.routes.draw do
   end
 
   authenticated :hospital do
-    root to: "home#dashboard", as: :authenticated_hospital_root
-    get "/", to: "home#dashboard", as: "hospital_dashboard"
+    root to: "hospitals#dashboard", as: :authenticated_hospital_root
+    resources :booking_types
   end
 
-  resources :booking_types
-  resources :bookings
+  resources :bookings, except: [:index, :new]
 
   get ":booking_link", to: "hospitals#show", as: :hospital
+
+  scope '/:booking_link', as: :hospital do
+    resources :bookings, only: [:index, :new]
+  end
 
   # Defines the root path route ("/")
   root "home#index"

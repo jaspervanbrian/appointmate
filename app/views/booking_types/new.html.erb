@@ -1,20 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="d-flex align-items-center justify-content-between">
-        <h1 class="fw-bold mb-6">Create a booking type</h1>
-        <% if current_patient&.booking_link? %>
-          <%= link_to "View live page", hospital_path(booking_link: current_patient.booking_link), class: "text-gray" %>
-        <% end%>
-      </div>
-
-      <%= render "form", booking_type: @booking_type %>
-
-      <br>
-
-      <div>
-        <%= link_to "Back to booking types", booking_types_path %>
-      </div>
-    </div>
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="font-bold text-3xl mb-6">Create a booking type</h1>
+    <% if current_hospital.booking_link? %>
+      <%= link_to "View live page", hospital_path(booking_link: current_hospital.booking_link), class: "text-gray-700 underline" %>
+    <% end%>
   </div>
+
+  <%= render 'form', booking_type: @booking_type %>
 </div>

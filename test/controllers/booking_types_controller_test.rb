@@ -17,7 +17,7 @@ class BookingTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create booking_type" do
     assert_difference("BookingType.count") do
-      post booking_types_url, params: { booking_type: { color: @booking_type.color, duration: @booking_type.duration, name: @booking_type.name, patient_id: @booking_type.patient_id, payment_required: @booking_type.payment_required, price: @booking_type.price, type: @booking_type.type } }
+      post booking_types_url, params: { booking_type: { color: @booking_type.color, duration: @booking_type.duration, name: @booking_type.name, hospital_id: @booking_type.hospital_id, payment_required: @booking_type.payment_required, price: @booking_type.price, type: @booking_type.type } }
     end
 
     assert_redirected_to booking_type_url(BookingType.last)
@@ -34,7 +34,7 @@ class BookingTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update booking_type" do
-    patch booking_type_url(@booking_type), params: { booking_type: { color: @booking_type.color, duration: @booking_type.duration, name: @booking_type.name, patient_id: @booking_type.patient_id, payment_required: @booking_type.payment_required, price: @booking_type.price, type: @booking_type.type } }
+    patch booking_type_url(@booking_type), params: { booking_type: { color: @booking_type.color, duration: @booking_type.duration, name: @booking_type.name, hospital_id: @booking_type.hospital_id, payment_required: @booking_type.payment_required, price: @booking_type.price, type: @booking_type.type } }
     assert_redirected_to booking_type_url(@booking_type)
   end
 
