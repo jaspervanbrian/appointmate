@@ -1,0 +1,16 @@
+<table class="w-100 table table-bordered table-hover">
+  <thead>
+    <th class="col">Hospital</th>
+    <th class="col">Service</th>
+    <th class="col">Starts at</th>
+    <th class="col">Estimated end time</th>
+    <th class="col">Online Payment?</th>
+    <th class="col">Paid</th>
+    <th class="col">Details</th>
+  </thead>
+  <tbody>
+    <% bookings.each do |b| %>
+      <%= render 'bookings/patient_booking', booking: b %>
+    <% end %>
+  </tbody>
+</table>

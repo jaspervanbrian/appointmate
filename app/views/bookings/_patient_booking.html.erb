@@ -1,0 +1,13 @@
+<tr id="<%= dom_id booking %>">
+  <td><%= booking.booking_type.hospital.name %></td>
+  <td><%= booking.booking_type.name %></td>
+  <td><%= booking.start_at.strftime('%b %e, %Y at %l:%M %p') %></td>
+  <td><%= booking.end_at.strftime('%b %e, %Y at %l:%M %p') %></td>
+  <td><%= booking.booking_type.payment_required? ? "Required" : "Optional" %></td>
+  <td><%= booking.customer_paid? ? "Yes" : "No" %></td>
+  <td class="text-center">
+    <%= link_to booking_path(booking.id), target: "_blank" do %>
+      <i class="fas fa-external-link-alt"></i>
+    <% end %>
+  </td>
+</tr>

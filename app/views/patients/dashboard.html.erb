@@ -1,0 +1,106 @@
+<main class="d-flex align-items-center py-4">
+  <div class="form-signin w-100 m-auto px-5">
+    <div class="d-flex align-items-center mb-3 justify-content-between">
+      <h3 class="h3 d-inline m-0 fw-normal">Your Appointment History</h3>
+      <button type="button" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0" data-bs-toggle="modal" data-bs-target="#book-appointment">
+        Book an appointment
+      </button>
+    </div>
+    <div class="d-flex align-items-start">
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="nav-link active" id="v-pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upcoming" type="button" role="tab" aria-controls="v-pills-upcoming" aria-selected="true">Upcoming</button>
+        <button class="nav-link" id="v-pills-all-tab" data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button" role="tab" aria-controls="v-pills-all" aria-selected="false">All</button>
+        <button class="nav-link" id="v-pills-past-tab" data-bs-toggle="pill" data-bs-target="#v-pills-past" type="button" role="tab" aria-controls="v-pills-past" aria-selected="false">Past</button>
+        <hr>
+        <button class="nav-link" id="v-pills-approved-tab" data-bs-toggle="pill" data-bs-target="#v-pills-approved" type="button" role="tab" aria-controls="v-pills-approved" aria-selected="false">Approved</button>
+        <button class="nav-link" id="v-pills-pending-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pending" type="button" role="tab" aria-controls="v-pills-pending" aria-selected="false">Pending</button>
+        <button class="nav-link" id="v-pills-cancelled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cancelled" type="button" role="tab" aria-controls="v-pills-cancelled" aria-selected="false">Cancelled</button>
+      </div>
+      <div class="tab-content w-100" id="v-pills-tabContent">
+        <div class="tab-pane fade show active w-100" id="v-pills-upcoming" role="tabpanel" aria-labelledby="v-pills-upcoming-tab" tabindex="0">
+          <% if @upcoming_bookings.any? %>
+            <%= render 'bookings/patient_booking_table', bookings: @upcoming_bookings %>
+          <% else %>
+            <h5 class="h5 d-inline fw-normal">No Upcoming Appointments found.</h5>
+          <% end %>
+        </div>
+        <div class="tab-pane fade w-100" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab" tabindex="0">
+          <% if @all_bookings.any? %>
+            <%= render 'bookings/patient_booking_table', bookings: @all_bookings %>
+          <% else %>
+            <h5 class="h5 d-inline fw-normal">No Appointments found.</h5>
+          <% end %>
+        </div>
+        <div class="tab-pane fade w-100" id="v-pills-past" role="tabpanel" aria-labelledby="v-pills-past-tab" tabindex="0">
+          <% if @past_bookings.any? %>
+            <%= render 'bookings/patient_booking_table', bookings: @past_bookings %>
+          <% else %>
+            <h5 class="h5 d-inline fw-normal">No Past Appointments found.</h5>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="v-pills-approved" role="tabpanel" aria-labelledby="v-pills-approved-tab" tabindex="0">
+          <% if @approved_bookings.any? %>
+            <table class="w-full table-collapse">
+              <thead>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Name</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Email</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts at</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Estimated end time</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Booking Type</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+              </thead>
+              <tbody>
+                <%= render @approved_bookings %>
+              </tbody>
+            </table>
+          <% else %>
+            <h5 class="h5 d-inline fw-normal">No Approved Appointments found.</h5>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="v-pills-pending" role="tabpanel" aria-labelledby="v-pills-pending-tab" tabindex="0">
+          <% if @pending_bookings.any? %>
+            <table class="w-full table-collapse">
+              <thead>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Name</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Email</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts at</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Estimated end time</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Booking Type</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+              </thead>
+              <tbody>
+                <%= render @pending_bookings %>
+              </tbody>
+            </table>
+          <% else %>
+            <h5 class="h5 d-inline fw-normal">No Pending Appointments found.</h5>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="v-pills-cancelled" role="tabpanel" aria-labelledby="v-pills-cancelled-tab" tabindex="0">
+          <% if @unapproved_bookings.any? %>
+            <table class="w-full table-collapse">
+              <thead>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Name</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Email</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts at</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Estimated end time</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Booking Type</th>
+                <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+              </thead>
+              <tbody>
+                <%= render @unapproved_bookings %>
+              </tbody>
+            </table>
+          <% else %>
+            <h5 class="h5 d-inline fw-normal">No Cancelled Appointments found.</h5>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%= render 'patients/book_appointment_modal', hospitals: @hospitals %>

@@ -9,6 +9,10 @@
   <td class="border border-slate-300 bg-white text-left p-4"><%= booking.start_at.strftime('%b %e, %Y at %l:%M %p') %></td>
   <td class="border border-slate-300 bg-white text-left p-4"><%= booking.end_at.strftime('%b %e, %Y at %l:%M %p') %></td>
   <td class="border border-slate-300 bg-white text-left p-4"><%= booking.booking_type.name %></td>
-  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.booking_type.payment_required? ? "Yes" : "No" %></td>
   <td class="border border-slate-300 bg-white text-left p-4"><%= booking.customer_paid? ? "Yes" : "No" %></td>
+  <td class="border border-slate-300 bg-white p-4 text-center text-cyan-600">
+    <%= link_to booking_path(booking.id), target: "_blank" do %>
+      <i class="fas fa-external-link-alt"></i>
+    <% end %>
+  </td>
 </tr>

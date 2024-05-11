@@ -30,6 +30,31 @@ hospital = Hospital.create(
   password_confirmation: "secret"
 )
 
+hospital_1 = Hospital.create(
+  name: "Balmain Hospital",
+  booking_link: "balmain",
+  landline_number: "02 9395 2111 ",
+  fax: "02 9395 2119",
+  street_address: "29 Booth Street",
+  suburb_address: "Balmain",
+  postcode_address: "NSW",
+  state_address: "2041",
+  email: "SLHD-Balmain@health.nsw.gov.au",
+  password: "secret",
+  password_confirmation: "secret"
+)
+
+BookingType.create!(
+  color: "#8ba832",
+  description: "RPAH Medical Centre combines the things you love about a traditional family practice; GPs you know and trust, personalised care and advice and a welcoming and safe atmosphere, alongside the latest diagnostic and medical equipment of a state-of-the-art accredited medical centre.",
+  duration: 30,
+  location: "Telehealth/In-Person",
+  name: "General Practitioner",
+  payment_required: true,
+  price: 20,
+  hospital: 
+)
+
 BookingType.create!(
   color: "#38bdf8",
   description: "Offering advanced cancer care and support for patients battling cancer.",
@@ -160,6 +185,39 @@ BookingType.create!(
   payment_required: true,
   price: 20,
   hospital: 
+)
+
+BookingType.create!(
+  color: "#34d399",
+  description: "Care for patients with stroke, serious injury or who require rehabilitation after surgery or an illness of cancer treatment. ",
+  duration: 120,
+  location: "In-Person",
+  name: "Rehabilitation",
+  payment_required: true,
+  price: 80,
+  hospital: hospital_1
+)
+
+BookingType.create!(
+  color: "#fbbf24",
+  description: "Our dedicated nurses and midwives are committed to ensuring that all our patients, consumers and their families receive exceptional patient and family centred care.",
+  duration: 70,
+  location: "In-Person",
+  name: "Nursing",
+  payment_required: true,
+  price: 80,
+  hospital: hospital_1
+)
+
+BookingType.create!(
+  color: "#fbbf24",
+  description: "Providing care to older people and people with disabilities, as well as rehabilitation for people recovering from illness or injury.",
+  duration: 180,
+  location: "In-Person",
+  name: "Aged Health, Chronic Care & Rehabilitation",
+  payment_required: true,
+  price: 150,
+  hospital: hospital_1
 )
 
 puts "Reset complete 👨‍💻🎉🔥"

@@ -1,5 +1,6 @@
 class HospitalsController < ApplicationController
   before_action :authenticate_hospital!, only: :dashboard
+
   layout 'hospitals'
 
   def dashboard

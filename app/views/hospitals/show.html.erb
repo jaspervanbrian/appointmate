@@ -1,7 +1,32 @@
 <div class="max-w-5xl mx-auto pb-8 rounded shadow-xl border">
-  <div class="px-6 py-10 rounded-t-xl bg-gray-50">
-    <h1 class="text-3xl font-extrabold text-center"><%= @hospital.name %>'s Services</h1>
-    <p class="text-center text-gray-600 mt-2">Book your prefered time slot using the booking options below.</p>
+  <div class="px-6 py-10 rounded-t-xl bg-gray-50 text-center">
+    <h1 class="text-3xl font-extrabold"><%= @hospital.name %>'s Services</h1>
+    <% if @hospital.street_address.present? || @hospital.suburb_address.present? || @hospital.state_address.present? || @hospital.postcode_address.present? %>
+      <p class="text-gray-600 mt-2">
+        <i class="fas fa-map-marker-alt mr-3"></i><%= @hospital.street_address %>, <%= @hospital.suburb_address %>, <%= @hospital.state_address %>, <%= @hospital.postcode_address %>
+      </p>
+    <% end %>
+    <% if @hospital.landline_number.present? %>
+      <p class="text-gray-600">
+        <i class="fas fa-phone mr-3"></i><%= @hospital.landline_number %>
+      </p>
+    <% end %>
+    <% if @hospital.mobile_number.present? %>
+      <p class="text-gray-600">
+        <i class="fas fa-mobile-alt mr-3"></i><%= @hospital.mobile_number %>
+      </p>
+    <% end %>
+    <% if @hospital.fax.present? %>
+      <p class="text-gray-600">
+        <i class="fas fa-fax mr-3"></i><%= @hospital.fax %>
+      </p>
+    <% end %>
+    <p class="text-gray-600">
+      <i class="fas fa-envelope mr-3"></i><%= @hospital.email %>
+    </p>
+    <div class="mt-7">
+      <small class="text-gray-600">Book your prefered time slot using the booking options below.</small>
+    </div>
   </div>
   <div class="grid grid-cols-3 gap-6 px-8 pt-8">
     <% @booking_types.each do |booking_type| %>

@@ -30,27 +30,52 @@
     <%= form.rich_text_area :notes, class: input_class %>
   </div>
 
-  <h3 class="font-bold text-lg mb-3">Booking details</h3>
+  <h3 class="font-bold text-lg mb-3">Appointment details</h3>
 
   <% if @booking.new_record? %>
     <div class="mb-6">
       <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
         <p class="<%= label_class %>">Hospital</p>
-        <div class="flex items-start">
+        <div class="flex flex-col items-start">
           <div class="text-3xl font-bold mr-3">
             <%= @hospital.name %>
           </div>
+          <% if @hospital.street_address.present? || @hospital.suburb_address.present? || @hospital.state_address.present? || @hospital.postcode_address.present? %>
+            <p class="text-gray-600 mt-2">
+              <i class="fas fa-map-marker-alt mr-3"></i><%= @hospital.street_address %>, <%= @hospital.suburb_address %>, <%= @hospital.state_address %>, <%= @hospital.postcode_address %>
+            </p>
+          <% end %>
+          <% if @hospital.landline_number.present? %>
+            <p class="text-gray-600">
+              <i class="fas fa-phone mr-3"></i><%= @hospital.landline_number %>
+            </p>
+          <% end %>
+          <% if @hospital.mobile_number.present? %>
+            <p class="text-gray-600">
+              <i class="fas fa-mobile-alt mr-3"></i><%= @hospital.mobile_number %>
+            </p>
+          <% end %>
+          <% if @hospital.fax.present? %>
+            <p class="text-gray-600">
+              <i class="fas fa-fax mr-3"></i><%= @hospital.fax %>
+            </p>
+          <% end %>
+          <p class="text-gray-600">
+            <i class="fas fa-envelope mr-3"></i><%= @hospital.email %>
+          </p>
         </div>
       </div>
-      <div class="w-full rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
-        <%= form.label :booking_type_id, "Booking type", class: label_class %>
+      <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
+        <%= form.label :booking_type_id, "Service", class: label_class %>
         <input type="hidden" name="booking[booking_type_id]" value="<%= @booking_type.id %>">
         <div class="flex items-start">
           <div class="text-3xl font-bold mr-3"><%= @booking_type.name %>
             <div class="absolute top-3 right-3 w-3 h-3 rounded-full" style="background-color: <%= @booking_type.color %>;"></div>
           </div>
         </div>
-        <p>~ <%= duration(@booking_type) %></p>
+        <p class="text-gray-500"><%= @booking_type.location %></p>
+        <p class="text-gray-500 mb-5">~ <%= duration(@booking_type) %></p>
+        <%= @booking_type.description %>
       </div>
     </div>
   <% else %>

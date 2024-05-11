@@ -1,10 +1,80 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-3xl mx-auto px-4">
+  <h1 class="font-bold text-3xl my-6">Appointment Details</h1>
 
-<%= render @booking %>
-
-<div>
-  <%= link_to "Edit this booking", edit_booking_path(@booking) %> |
-  <%= link_to "Back to bookings", bookings_path %>
-
-  <%= button_to "Destroy this booking", @booking, method: :delete %>
+  <div clas="mb-10">
+    <div class="mb-6">
+      <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
+        <p class="<%= label_class %>">Patient Details</p>
+        <div class="flex flex-col items-start">
+          <div class="text-2xl font-bold mr-3"><%= @booking.name %></div>
+          <p class="text-gray-600">
+            <i class="fas fa-envelope mr-3"></i><%= @booking.email %>
+          </p>
+          <p class="text-lg font-bold mt-5">
+            <i class="far fa-clock mr-3"></i>Schedule:
+          </p>
+          <small class="text-gray-600 mt-2">
+            Starts at: <span class="font-bold text-black"><%= @booking.start_at.strftime('%b %e, %Y @ %l:%M %p') %></span>
+          </small>
+          <small class="text-gray-600 mt-2">
+            Estimated end time: <span class="font-bold text-black"><%= @booking.end_at.strftime('%b %e, %Y @ %l:%M %p') %></span>
+          </small>
+        </div>
+      </div>
+      <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
+        <div class="flex items-start">
+          <div class="text-3xl font-bold mr-3"><%= @booking_type.name %>
+          <div class="absolute top-3 right-3 w-3 h-3 rounded-full" style="background-color: <%= @booking_type.color %>;"></div>
+          </div>
+        </div>
+        <p class="text-gray-500"><%= @booking_type.location %></p>
+        <p class="text-gray-500">~ <%= duration(@booking_type) %></p>
+        <p class="font-bold"><%= number_to_currency(@booking_type.price) %></p>
+        <%= @booking_type.description %>
+      </div>
+      <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
+        <p class="<%= label_class %>">Hospital</p>
+        <div class="flex flex-col items-start">
+          <div class="text-3xl font-bold mr-3">
+            <%= @hospital.name %>
+          </div>
+          <% if @hospital.street_address.present? || @hospital.suburb_address.present? || @hospital.state_address.present? || @hospital.postcode_address.present? %>
+            <p class="text-gray-600 mt-2">
+              <i class="fas fa-map-marker-alt mr-3"></i><%= @hospital.street_address %>, <%= @hospital.suburb_address %>, <%= @hospital.state_address %>, <%= @hospital.postcode_address %>
+            </p>
+          <% end %>
+          <% if @hospital.landline_number.present? %>
+            <p class="text-gray-600">
+              <i class="fas fa-phone mr-3"></i><%= @hospital.landline_number %>
+            </p>
+          <% end %>
+          <% if @hospital.mobile_number.present? %>
+            <p class="text-gray-600">
+              <i class="fas fa-mobile-alt mr-3"></i><%= @hospital.mobile_number %>
+            </p>
+          <% end %>
+          <% if @hospital.fax.present? %>
+            <p class="text-gray-600">
+              <i class="fas fa-fax mr-3"></i><%= @hospital.fax %>
+            </p>
+          <% end %>
+          <p class="text-gray-600">
+            <i class="fas fa-envelope mr-3"></i><%= @hospital.email %>
+          </p>
+        </div>
+      </div>
+      <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
+        <p class="text-gray-600 mt-2">
+          Online Payment Required?: <span class="font-bold text-black"><%= @booking.booking_type.payment_required? ? "Yes" : "No" %></span>
+        </p>
+        <p class="text-gray-600 mt-2">
+          Paid?: <span class="font-bold text-black"><%= @booking.customer_paid? ? "Yes" : "No" %></span>
+        </p>
+        <p class="<%= label_class %> mt-6">Additional appointment notes:</p>
+        <div class="flex flex-col items-start mt-2">
+          <%= @booking.notes %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -15,12 +15,15 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   authenticated :patient do
-    root to: "patient#dashboard", as: :authenticated_patient_root
+    get "/patient/dashboard", to: "patients#dashboard", as: :patient_dashboard
+    resources :bookings, only: [:show]
   end
 
   authenticated :hospital do
-    root to: "hospitals#dashboard", as: :authenticated_hospital_root
+    get "/bookings/:id", to: "bookings#hospital_show", as: :authenticated_hospital_booking_show
     resources :booking_types
+
+    root to: "hospitals#dashboard", as: :authenticated_hospital_root
   end
 
   resources :bookings, except: [:index, :new]

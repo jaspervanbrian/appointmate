@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show edit update destroy ]
+  before_action :authenticate_patient!, only: %i[ show ]
+  before_action :authenticate_hospital!, only: %i[ hospital_show ]
   layout 'hospitals'
 
   # GET /bookings or /bookings.json
@@ -9,6 +11,26 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1 or /bookings/1.json
   def show
+    @booking = Booking.find(params[:id])
+
+    if @booking.patient_id != current_patient.id
+      redirect_to patient_dashboard_path
+    end
+
+    @booking_type = @booking.booking_type
+    @hospital = @booking_type.hospital
+  end
+
+  def hospital_show
+    @booking = Booking.find(params[:id])
+    @booking_type = @booking.booking_type
+    @hospital = @booking_type.hospital
+
+    if @hospital.id != current_hospital.id
+      redirect_to authenticated_hospital_root_path
+    else
+      render 'bookings/show'
+    end
   end
 
   # GET /bookings/new
@@ -31,7 +53,6 @@ class BookingsController < ApplicationController
 
   # POST /bookings or /bookings.json
   def create
-    pp booking_params
     @hospital = Hospital.find_by(booking_link: params[:booking_link])
     @booking_type = BookingType.find(params[:booking][:booking_type_id])
 
@@ -40,10 +61,10 @@ class BookingsController < ApplicationController
     }
 
     if patient_signed_in?
-      additional_attributes.merge(patient: current_patient)
+      @booking = current_patient.bookings.new(booking_params.merge(additional_attributes))
+    else
+      @booking = Booking.new(booking_params.merge(additional_attributes))
     end
-
-    @booking = Booking.new(booking_params.merge(additional_attributes))
 
     respond_to do |format|
       if @booking.save
@@ -53,7 +74,7 @@ class BookingsController < ApplicationController
         end
 
         if patient_signed_in?
-          format.html { redirect_to edit_patient_registration_path, notice: "Booking was successfully created." }
+          format.html { redirect_to patient_dashboard_path, notice: "Booking was successfully created." }
         else
           format.html { redirect_to hospital_path(booking_link: @hospital.booking_link), notice: "Booking was successfully created." }
         end

@@ -37,7 +37,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
-          <%= link_to "Home", root_path, class: "nav-item nav-link #{is_active?('/')}" %>
+          <%= link_to "Dashboard", patient_dashboard_path, class: "nav-item nav-link #{is_active?('/patient/dashboard')}", data: { turbo: false } %>
           <%= link_to "Edit Profile", edit_patient_registration_path, class: "nav-item nav-link #{is_active?('/patients/edit')}" %>
           <%= button_to "Log Out", destroy_patient_session_path, method: :delete, class: "nav-item nav-link" %>
         </div>

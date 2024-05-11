@@ -46,7 +46,7 @@
         <a href="#about-section" class="nav-item nav-link">About</a>
         <a href="#service-section" class="nav-item nav-link">Services</a>
         <% if patient_signed_in? %>
-          <%= link_to "Profile", edit_patient_registration_path, class: "nav-item nav-link" %>
+          <%= link_to "My Dashboard", patient_dashboard_path, class: "nav-item nav-link", data: { turbo: false } %>
         <% else %>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Patients</a>
@@ -64,7 +64,7 @@
         <% end %>
         <a href="#contact" class="nav-item nav-link">Contact Us</a>
       </div>
-      <%= link_to "Book Appointment", hospital_path(booking_link: "rpa"), class: "btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0" %>
+      <%= link_to "Book Appointment at RPA", hospital_path(booking_link: "rpa"), class: "btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0" %>
     </div>
   </nav>
 
@@ -79,7 +79,7 @@
           <h1 class="display-1 text-capitalize text-white mb-4">Royal Prince Alfred Hospital</h1>
           <p class="mb-5 fs-5">Innovation in Healthcare: Discover What Sets Us Apart
           </p>
-          <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Book Appointment</a>
+          <%= link_to "Book Appointment", hospital_path(booking_link: "rpa"), class: "btn btn-primary rounded-pill text-white py-3 px-5" %>
         </div>
       </div>
     </div>
@@ -87,11 +87,11 @@
       <%= image_tag("carousel-2.jpg", class: "img-fluid w-100", alt: "Image") %>
       <div class="carousel-caption">
         <div class="carousel-caption-content p-3">
-          <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Physiotherapy Center</h5>
-          <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
-          <p class="mb-5 fs-5 animated slideInDown"> Relieve Pain, Regain Life: Discover Expert Physiotherapy at Our Center
+          <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Rehabilitation Center</h5>
+          <h1 class="display-1 text-capitalize text-white mb-4">Balmain Hospital</h1>
+          <p class="mb-5 fs-5 animated slideInDown"> Relieve Pain, Regain Life: Discover Expert Rehabilitation Therapy at Our Center
           </p>
-          <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Book Appointment</a>
+          <%= link_to "Book Appointment", hospital_path(booking_link: "balmain"), class: "btn btn-primary rounded-pill text-white py-3 px-5" %>
         </div>
       </div>
     </div>
