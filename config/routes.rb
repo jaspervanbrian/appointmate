@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  authenticated :patient do
+    root to: "patient#dashboard", as: :authenticated_patient_root
+  end
+
   authenticated :hospital do
     root to: "hospitals#dashboard", as: :authenticated_hospital_root
     resources :booking_types
@@ -27,6 +31,8 @@ Rails.application.routes.draw do
   scope '/:booking_link', as: :hospital do
     resources :bookings, only: [:index, :new]
   end
+
+  resources :webhooks, only: :create
 
   # Defines the root path route ("/")
   root "home#index"

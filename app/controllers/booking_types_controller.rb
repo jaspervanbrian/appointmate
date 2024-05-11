@@ -1,10 +1,11 @@
 class BookingTypesController < ApplicationController
+  before_action :authenticate_hospital!
   before_action :set_booking_type, only: %i[ show edit update destroy ]
   layout 'hospitals'
 
   # GET /booking_types or /booking_types.json
   def index
-    @booking_types = current_hospital.booking_types
+    redirect_to root_path
   end
 
   # GET /booking_types/1 or /booking_types/1.json
@@ -13,7 +14,7 @@ class BookingTypesController < ApplicationController
 
   # GET /booking_types/new
   def new
-    @booking_type = current_hospital.booking_types.new
+    @booking_type = current_hospital.booking_types.new(color: "#000000")
   end
 
   # GET /booking_types/1/edit

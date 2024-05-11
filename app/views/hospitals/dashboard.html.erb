@@ -7,6 +7,26 @@
     <%= render @booking_types %>
   </div>
 
+  <% if @bookings.approved.any? %>
+    <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Approved bookings</h3>
+
+    <table class="w-full table-collapse">
+      <thead>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Name</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Email</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts at</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Estimated end time</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Booking Type</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Premium</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+      </thead>
+      <tbody>
+        <%= render @bookings.approved %>
+      </tbody>
+    </table>
+  <% end %>
+
   <% if @bookings.pending.any? %>
     <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Pending bookings</h3>
 
@@ -23,26 +43,6 @@
       </thead>
       <tbody>
         <%= render @bookings.pending %>
-      </tbody>
-    </table>
-  <% end %>
-
-  <% if @bookings.approved.any? %>
-    <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Pending bookings</h3>
-
-    <table class="w-full table-collapse">
-      <thead>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Name</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Email</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts at</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Estimated end time</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Booking Type</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Premium</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
-      </thead>
-      <tbody>
-        <%= render @bookings.approved %>
       </tbody>
     </table>
   <% end %>
