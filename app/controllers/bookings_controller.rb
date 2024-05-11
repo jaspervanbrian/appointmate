@@ -13,9 +13,16 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @booking = Booking.new
     @hospital = Hospital.find_by(booking_link: params[:booking_link])
     @booking_type = @hospital.booking_types.find(params[:booking_type])
+
+    @booking = Booking.new
+    if patient_signed_in?
+      @booking = Booking.new(
+        name: current_patient.name,
+        email: current_patient.email
+      )
+    end
   end
 
   # GET /bookings/1/edit
@@ -24,15 +31,34 @@ class BookingsController < ApplicationController
 
   # POST /bookings or /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    pp booking_params
+    @hospital = Hospital.find_by(booking_link: params[:booking_link])
+    @booking_type = BookingType.find(params[:booking][:booking_type_id])
+
+    additional_attributes = {
+      end_at: DateTime.parse(booking_params[:start_at]) + @booking_type.duration.minutes
+    }
+
+    if patient_signed_in?
+      additional_attributes.merge(patient: current_patient)
+    end
+
+    @booking = Booking.new(booking_params.merge(additional_attributes))
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
+
+        unless @booking_type.payment_required?
+          @booking.approved!
+        end
+
+        if patient_signed_in?
+          format.html { redirect_to edit_patient_registration_path, notice: "Booking was successfully created." }
+        else
+          format.html { redirect_to hospital_path(booking_link: @hospital.booking_link), notice: "Booking was successfully created." }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,14 +86,36 @@ class BookingsController < ApplicationController
     end
   end
 
+  def intent
+    @booking_type = BookingType.find(params[:_json])
+    amount = @booking_type.price * 100
+
+    payment_intent = Stripe::PaymentIntent.create(
+      amount: amount,
+      currency: 'usd',
+      automatic_payment_methods: {
+        enabled: true
+      },
+      metadata: {
+        hospital_id: @booking_type.hospital.id,
+        booking_type_id: @booking_type.id
+      }
+    )
+
+    respond_to do |format|
+      format.json { render json: { clientSecret: payment_intent['client_secret'] } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
+      @hospital = Hospital.find_by(booking_link: params[:booking_link])
       @booking = Booking.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:status, :first_name, :last_name, :email, :start_at, :end_at, :customer_paid)
+      params.require(:booking).permit(:status, :name, :notes, :booking_type_id, :first_name, :last_name, :email, :start_at, :end_at, :customer_paid)
     end
 end

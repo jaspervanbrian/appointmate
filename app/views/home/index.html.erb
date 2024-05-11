@@ -45,22 +45,26 @@
         <a href="#" class="nav-item nav-link active">Home</a>
         <a href="#about-section" class="nav-item nav-link">About</a>
         <a href="#service-section" class="nav-item nav-link">Services</a>
-        <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Patients</a>
-          <div class="dropdown-menu m-0">
-            <%= link_to "Sign In", new_patient_session_path, class: "dropdown-item" %>
-            <%= link_to "Register an Account", new_patient_registration_path, class: "dropdown-item" %>
+        <% if patient_signed_in? %>
+          <%= link_to "Profile", edit_patient_registration_path, class: "nav-item nav-link" %>
+        <% else %>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Patients</a>
+            <div class="dropdown-menu m-0">
+              <%= link_to "Sign In", new_patient_session_path, class: "dropdown-item" %>
+              <%= link_to "Register an Account", new_patient_registration_path, class: "dropdown-item" %>
+            </div>
           </div>
-        </div>
-        <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hospital</a>
-          <div class="dropdown-menu m-0">
-            <%= link_to "Sign In", new_hospital_session_path, class: "dropdown-item" %>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hospital</a>
+            <div class="dropdown-menu m-0">
+              <%= link_to "Sign In", new_hospital_session_path, class: "dropdown-item" %>
+            </div>
           </div>
-        </div>
+        <% end %>
         <a href="#contact" class="nav-item nav-link">Contact Us</a>
       </div>
-      <%= link_to "Book Appointment", new_booking_path, class: "btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0" %>
+      <%= link_to "Book Appointment", hospital_path(booking_link: "rpa"), class: "btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0" %>
     </div>
   </nav>
 
@@ -129,7 +133,7 @@
 <!-- About End -->
 
 <!-- Service Start Feature-->
-<div class="container-fluid feature py-5" id="#service-section">
+<div class="container-fluid feature py-5" id="service-section">
   <div class="container py-5">
     <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
       <div class="sub-style">

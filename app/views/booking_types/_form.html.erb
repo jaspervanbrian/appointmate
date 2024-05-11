@@ -32,7 +32,7 @@
   </div>
 
   <div class="mb-6">
-    <%= form.label :duration, class: label_class %>
+    <label class="<%= label_class %>">Duration (in minutes)</label>
     <%= form.number_field :duration, class: input_class %>
   </div>
 
@@ -63,11 +63,13 @@
     </div>
   <% end %>
 
-  <%= form.submit class: button_class(theme: 'primary') %>
+  <div class="mb-6">
+    <%= form.submit class: button_class(theme: 'primary') %>
 
-  <% if booking_type.persisted? %>
-    <%= link_to "Cancel", booking_type, class: "text-neutral-700 underline inline-block ml-3" %>
-  <% else %>
-    <%= link_to "Cancel", booking_types_path, class:  "text-neutral-700 underline inline-block ml-3" %>
-  <% end %>
+    <% if booking_type.persisted? %>
+      <%= link_to "Cancel", booking_type, class: "text-neutral-700 underline inline-block ml-3" %>
+    <% else %>
+      <%= link_to "Cancel", booking_types_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+    <% end %>
+  </div>
 <% end %>
