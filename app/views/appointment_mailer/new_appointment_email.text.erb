@@ -1,0 +1,43 @@
+Greetings <%= @booking.name %>,
+
+Your appointment has been confirmed!
+Here are the details for your booking:
+
+Patient Details:
+<%= @booking.name %>
+<%= @booking.email %>
+
+Schedule:
+Starts at: <%= @booking.start_at.strftime('%b %e, %Y @ %l:%M %p') %>
+Estimated end time: <%= @booking.end_at.strftime('%b %e, %Y @ %l:%M %p') %>
+
+Service Details:
+<%= @booking_type.name %>
+<%= @booking_type.location %>
+~ <%= @duration %>
+Price: <%= number_to_currency(@booking_type.price) %>
+Description: <%= @booking_type.description %>
+
+Hospital
+<%= @hospital.name %>
+<% if @hospital.street_address.present? || @hospital.suburb_address.present? || @hospital.state_address.present? || @hospital.postcode_address.present? %>
+  <%= @hospital.street_address %>, <%= @hospital.suburb_address %>, <%= @hospital.state_address %>, <%= @hospital.postcode_address %>
+<% end %>
+<% if @hospital.landline_number.present? %>
+Phone Number:  <%= @hospital.landline_number %>
+<% end %>
+<% if @hospital.mobile_number.present? %>
+Mobile Number: <%= @hospital.mobile_number %>
+<% end %>
+<% if @hospital.fax.present? %>
+Fax: <%= @hospital.fax %>
+<% end %>
+Email: <%= @hospital.email %>
+
+
+Online Payment Required?: <%= @booking_type.payment_required? ? "Yes" : "No" %>
+Paid?: <%= @booking.customer_paid? ? "Yes" : "No" %>
+
+
+Additional appointment notes:
+<%= @booking.notes %>

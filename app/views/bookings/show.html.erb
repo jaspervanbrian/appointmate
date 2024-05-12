@@ -65,7 +65,7 @@
       </div>
       <div class="w-full mb-3 rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
         <p class="text-gray-600 mt-2">
-          Online Payment Required?: <span class="font-bold text-black"><%= @booking.booking_type.payment_required? ? "Yes" : "No" %></span>
+          Online Payment Required?: <span class="font-bold text-black"><%= @booking_type.payment_required? ? "Yes" : "No" %></span>
         </p>
         <p class="text-gray-600 mt-2">
           Paid?: <span class="font-bold text-black"><%= @booking.customer_paid? ? "Yes" : "No" %></span>

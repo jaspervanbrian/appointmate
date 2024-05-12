@@ -1,0 +1,55 @@
+<p>
+  Greetings <%= @booking.name %>,
+</p><br />
+
+<p>
+  Your appointment has been confirmed!<br />
+  Here are the details for your booking:<br />
+</p><br />
+
+<h3>Patient Details:</h3>
+<p>
+  <%= @booking.name %><br />
+  <span style="font-style: italic"><%= @booking.email %></span><br />
+</p><br />
+
+<h3>Schedule:</h3>
+<p>
+  Starts at: <span style="font-weight: bold"><%= @booking.start_at.strftime('%b %e, %Y @ %l:%M %p') %></span><br />
+  Estimated end time: <span style="font-weight: bold"><%= @booking.end_at.strftime('%b %e, %Y @ %l:%M %p') %></span><br />
+</p><br />
+
+<h3>Service Details:</h3>
+<p>
+  <span style="font-weight: bold"><%= @booking_type.name %></span><br />
+  <%= @booking_type.location %><br />
+  ~ <%= @duration %><br />
+  Price: <span style="font-weight: bold"><%= number_to_currency(@booking_type.price) %></span><br /><br />
+  Description: <%= @booking_type.description %><br />
+</p><br />
+
+<h3>Hospital</h3>
+<p>
+  <span style="font-weight: bold"><%= @hospital.name %></span><br />
+<% if @hospital.street_address.present? || @hospital.suburb_address.present? || @hospital.state_address.present? || @hospital.postcode_address.present? %>
+  <%= @hospital.street_address %>, <%= @hospital.suburb_address %>, <%= @hospital.state_address %>, <%= @hospital.postcode_address %><br />
+<% end %>
+<% if @hospital.landline_number.present? %>
+  Phone Number:  <%= @hospital.landline_number %><br />
+<% end %>
+<% if @hospital.mobile_number.present? %>
+  Mobile Number: <%= @hospital.mobile_number %><br />
+<% end %>
+<% if @hospital.fax.present? %>
+  Fax: <%= @hospital.fax %><br />
+<% end %>
+Email: <span style="font-style: italic"><%= @hospital.email %></span><br />
+</p><br />
+
+<p>
+Online Payment Required?: <%= @booking_type.payment_required? ? "Yes" : "No" %><br />
+Paid?: <%= @booking.customer_paid? ? "Yes" : "No" %><br />
+</p><br /><br />
+
+Additional appointment notes:
+<%= @booking.notes %>

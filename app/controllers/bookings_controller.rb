@@ -71,6 +71,8 @@ class BookingsController < ApplicationController
 
         unless @booking_type.payment_required?
           @booking.approved!
+          pp "Sending email to #{@booking.email}"
+          AppointmentMailer.new_appointment_email(@booking, @booking_type, @hospital).deliver_now
         end
 
         if patient_signed_in?

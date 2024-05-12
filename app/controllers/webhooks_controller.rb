@@ -26,6 +26,9 @@ class WebhooksController < ApplicationController
       @bookings = Booking.where(booking_type_id: @hospital.booking_type_ids)
       @booking = @bookings.last
       @booking.update(customer_paid: true, status: "approved")
+      @booking_type = @booking.booking_type
+      pp "Sending email to #{@booking.email}"
+      AppointmentMailer.new_appointment_email(@booking, @booking_type, @hospital).deliver_now
     when 'payment_intent.processing'
       # Send email to user notifying we are processing their payment and will get another reminder or something when payment completes.
     when 'payment_intent.payment_failed'
