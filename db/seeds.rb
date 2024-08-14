@@ -33,13 +33,27 @@ hospital = Hospital.create(
 hospital_1 = Hospital.create(
   name: "Balmain Hospital",
   booking_link: "balmain",
-  landline_number: "02 9395 2111 ",
+  landline_number: "02 9395 2111",
   fax: "02 9395 2119",
   street_address: "29 Booth Street",
   suburb_address: "Balmain",
   postcode_address: "NSW",
   state_address: "2041",
   email: "SLHD-Balmain@health.nsw.gov.au",
+  password: "secret",
+  password_confirmation: "secret"
+)
+
+hospital_2 = Hospital.create(
+  name: "Canterbury Hospital",
+  booking_link: "canterbury",
+  landline_number: "02 9153 2000",
+  fax: "02 9153 2766",
+  street_address: "575 Canterbury Rd",
+  suburb_address: "Campsie",
+  postcode_address: "NSW",
+  state_address: "2194",
+  email: "SLHD-CanterburyFeedback@health.nsw.gov.au",
   password: "secret",
   password_confirmation: "secret"
 )
@@ -218,6 +232,39 @@ BookingType.create!(
   payment_required: true,
   price: 150,
   hospital: hospital_1
+)
+
+BookingType.create!(
+  color: "#FF5733",
+  description: "In the CAPS model the woman will have a named midwife who she is able to contact directly via their mobile. The CAPS midwife will care for women at home, in the community or in the hospital for all antenatal care during business hours. After the baby is born, the CAPS midwife will care for women and babies at home until the baby is 2 weeks old",
+  duration: 120,
+  location: "In-Person",
+  name: "Canterbury Antenatal Postnatal Service (CAPS)",
+  payment_required: true,
+  price: 335,
+  hospital: hospital_2
+)
+
+BookingType.create!(
+  color: "#33FF57",
+  description: "Opioid Treatment Programs (OTPs) are public health clinics providing treatment for people dependent on opioids. Our OTP clinics are located at RPA and Canterbury Hospitals. These treatments are provided free of charge.",
+  duration: 60,
+  location: "In-Person",
+  name: "Opioid Treatment Programs",
+  payment_required: false,
+  price: 0,
+  hospital: hospital_2
+)
+
+BookingType.create!(
+  color: "#fbbf24",
+  description: "The Emergency Department is located at the front of Canterbury Hospital, 575 Canterbury Road, Campsie. Highly trained doctors and other health professionals are on site 24 hours a day to care for patients needing emergency treatment. ",
+  duration: 0,
+  location: "In-Person",
+  name: "Emergency",
+  payment_required: false,
+  price: 0,
+  hospital: hospital_2
 )
 
 puts "Reset complete 👨‍💻🎉🔥"

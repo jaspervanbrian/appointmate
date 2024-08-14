@@ -95,6 +95,18 @@
         </div>
       </div>
     </div>
+    <div class="header-carousel-item">
+      <%= image_tag("carousel-3.jpg", class: "img-fluid w-100", alt: "Image") %>
+      <div class="carousel-caption">
+        <div class="carousel-caption-content p-3">
+          <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Emergency Department</h5>
+          <h1 class="display-1 text-capitalize text-white mb-4">Canterbury Hospital</h1>
+          <p class="mb-5 fs-5 animated slideInDown"> Caring for our community since 1929.
+          </p>
+          <%= link_to "Book Appointment", hospital_path(booking_link: "canterbury"), class: "btn btn-primary rounded-pill text-white py-3 px-5" %>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Carousel End -->
 </div>
