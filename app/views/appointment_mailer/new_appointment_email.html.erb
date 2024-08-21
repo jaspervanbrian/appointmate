@@ -17,6 +17,9 @@
 <p>
   Starts at: <span style="font-weight: bold"><%= @booking.start_at.strftime('%b %e, %Y @ %l:%M %p') %></span><br />
   Estimated end time: <span style="font-weight: bold"><%= @booking.end_at.strftime('%b %e, %Y @ %l:%M %p') %></span><br />
+  <% if @staff.present? %>
+    Please see <span style="font-weight: bold"><%= @staff.name %></span>, <span style="font-style: italic"><%= @staff.title %> (<%= @staff.schedule %>)</span> for this appointment.
+  <% end %>
 </p><br />
 
 <h3>Service Details:</h3>

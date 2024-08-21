@@ -19,12 +19,14 @@ class BookingsController < ApplicationController
 
     @booking_type = @booking.booking_type
     @hospital = @booking_type.hospital
+    @staff = @booking.staff
   end
 
   def hospital_show
     @booking = Booking.find(params[:id])
     @booking_type = @booking.booking_type
     @hospital = @booking_type.hospital
+    @staff = @booking.staff
 
     if @hospital.id != current_hospital.id
       redirect_to authenticated_hospital_root_path
@@ -139,6 +141,6 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:status, :name, :notes, :booking_type_id, :first_name, :last_name, :email, :start_at, :end_at, :customer_paid)
+      params.require(:booking).permit(:status, :name, :notes, :booking_type_id, :first_name, :last_name, :email, :start_at, :end_at, :customer_paid, :staff_id)
     end
 end

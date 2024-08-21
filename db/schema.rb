@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_11_034514) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_20_231704) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,6 +49,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_034514) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "booking_type_staffs", force: :cascade do |t|
+    t.integer "booking_type_id", null: false
+    t.integer "staff_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_type_id"], name: "index_booking_type_staffs_on_booking_type_id"
+    t.index ["staff_id"], name: "index_booking_type_staffs_on_staff_id"
+  end
+
   create_table "booking_types", force: :cascade do |t|
     t.string "name"
     t.string "type"
@@ -75,6 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_034514) do
     t.datetime "updated_at", null: false
     t.integer "booking_type_id"
     t.integer "patient_id"
+    t.integer "staff_id"
   end
 
   create_table "hospitals", force: :cascade do |t|
@@ -125,7 +135,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_034514) do
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  create_table "staffs", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "schedule"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "booking_type_staffs", "booking_types"
+  add_foreign_key "booking_type_staffs", "staffs"
   add_foreign_key "booking_types", "hospitals"
 end

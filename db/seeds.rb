@@ -58,6 +58,69 @@ hospital_2 = Hospital.create(
   password_confirmation: "secret"
 )
 
+s1 = Staff.create(
+  first_name: "John",
+  last_name: "Doe",
+  title: "GP",
+  schedule: "9am to 5pm"
+)
+
+s2 = Staff.create(
+  first_name: "Jane",
+  last_name: "Doe",
+  title: "GP",
+  schedule: "9am to 5pm"
+)
+
+s3 = Staff.create(
+  first_name: "Karen",
+  last_name: "Jones",
+  title: "Physician",
+  schedule: "9am to 5pm"
+)
+
+s4 = Staff.create(
+  first_name: "Kevin",
+  last_name: "Smith",
+  title: "Surgeon",
+  schedule: "12am to 8pm"
+)
+
+s5 = Staff.create(
+  first_name: "James",
+  last_name: "Morris",
+  title: "Pediatrician",
+  schedule: "10am to 6pm"
+)
+
+s6 = Staff.create(
+  first_name: "Kyle",
+  last_name: "George",
+  title: "Physical Therapist",
+  schedule: "9am to 5pm"
+)
+
+s7 = Staff.create(
+  first_name: "Anna",
+  last_name: "Peyton",
+  title: "Occupational Therapist",
+  schedule: "9am to 5pm"
+)
+
+s8 = Staff.create(
+  first_name: "Tyrese",
+  last_name: "Powell",
+  title: "Cardiologist",
+  schedule: "9am to 5pm"
+)
+
+s9 = Staff.create(
+  first_name: "Lawrence",
+  last_name: "Jones",
+  title: "Urologist",
+  schedule: "8am to 6pm"
+)
+
 BookingType.create!(
   color: "#8ba832",
   description: "RPAH Medical Centre combines the things you love about a traditional family practice; GPs you know and trust, personalised care and advice and a welcoming and safe atmosphere, alongside the latest diagnostic and medical equipment of a state-of-the-art accredited medical centre.",
@@ -66,7 +129,8 @@ BookingType.create!(
   name: "General Practitioner",
   payment_required: true,
   price: 20,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2]
 )
 
 BookingType.create!(
@@ -77,7 +141,8 @@ BookingType.create!(
   name: "Cancer Center",
   payment_required: true,
   price: 60,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s4]
 )
 
 BookingType.create!(
@@ -88,7 +153,8 @@ BookingType.create!(
   name: "Cardiology",
   payment_required: true,
   price: 30,
-  hospital: 
+  hospital:,
+  staffs: [s8]
 )
 
 BookingType.create!(
@@ -99,7 +165,8 @@ BookingType.create!(
   name: "Head and Neck",
   payment_required: true,
   price: 40,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s5, s6, s7]
 )
 
 BookingType.create!(
@@ -110,7 +177,8 @@ BookingType.create!(
   name: "Sexual Health Care",
   payment_required: true,
   price: 20,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s3]
 )
 
 BookingType.create!(
@@ -121,7 +189,8 @@ BookingType.create!(
   name: "Urology",
   payment_required: true,
   price: 40,
-  hospital: 
+  hospital:,
+  staffs: [s9]
 )
 
 BookingType.create!(
@@ -132,7 +201,8 @@ BookingType.create!(
   name: "Neurosurgery",
   payment_required: true,
   price: 60,
-  hospital: 
+  hospital:,
+  staffs: [s4]
 )
 
 BookingType.create!(
@@ -143,7 +213,8 @@ BookingType.create!(
   name: "Orthopaedics",
   payment_required: true,
   price: 30,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s4]
 )
 
 BookingType.create!(
@@ -154,7 +225,8 @@ BookingType.create!(
   name: "Palliative Care",
   payment_required: true,
   price: 40,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s3, s4, s5, s6, s7, s8, s9]
 )
 
 BookingType.create!(
@@ -165,7 +237,8 @@ BookingType.create!(
   name: "Radiology/Medical Imaging",
   payment_required: true,
   price: 30,
-  hospital:
+  hospital:,
+  staffs: [s1, s2, s3, s4, s5, s6, s7, s8, s9]
 )
 
 BookingType.create!(
@@ -176,7 +249,8 @@ BookingType.create!(
   name: "Basic Physician Training Network",
   payment_required: true,
   price: 100,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s3]
 )
 
 BookingType.create!(
@@ -187,7 +261,8 @@ BookingType.create!(
   name: "Women and Babies Services",
   payment_required: true,
   price: 30,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s5]
 )
 
 BookingType.create!(
@@ -198,7 +273,8 @@ BookingType.create!(
   name: "Rheumatology",
   payment_required: true,
   price: 20,
-  hospital: 
+  hospital:,
+  staffs: [s1, s2, s3]
 )
 
 BookingType.create!(

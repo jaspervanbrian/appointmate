@@ -10,6 +10,9 @@ Patient Details:
 Schedule:
 Starts at: <%= @booking.start_at.strftime('%b %e, %Y @ %l:%M %p') %>
 Estimated end time: <%= @booking.end_at.strftime('%b %e, %Y @ %l:%M %p') %>
+<% if @staff.present? %>
+Please see <%= @staff.name %>, <%= @staff.title %> (<%= @staff.schedule %>) for this appointment.
+<% end %>
 
 Service Details:
 <%= @booking_type.name %>

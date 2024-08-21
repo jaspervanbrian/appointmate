@@ -9,6 +9,7 @@ class AppointmentMailer < ApplicationMailer
     @booking = booking
     @booking_type = booking_type
     @hospital = hospital
+    @staff = booking.staff
 
     @duration = duration(@booking_type)
     mail to: booking.email, subject: 'Your appointment has been confirmed!'

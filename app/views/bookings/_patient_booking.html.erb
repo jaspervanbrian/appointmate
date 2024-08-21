@@ -1,6 +1,7 @@
 <tr id="<%= dom_id booking %>">
   <td><%= booking.booking_type.hospital.name %></td>
   <td><%= booking.booking_type.name %></td>
+  <td><%= booking.status.capitalize %></td>
   <td><%= booking.start_at.strftime('%b %e, %Y at %l:%M %p') %></td>
   <td><%= booking.end_at.strftime('%b %e, %Y at %l:%M %p') %></td>
   <td><%= booking.booking_type.payment_required? ? "Required" : "Optional" %></td>

@@ -88,6 +88,9 @@
       <label class="<%= label_class %>">Date and starting time of the appointment</label>
       <%= form.datetime_field :start_at, class: input_class, min: Date.today, required: true %>
     </div>
+    <% if @booking_type.staffs.length > 0 %>
+      <%= render "preferred_staff", form: form %>
+    <% end %>
   </div>
 
   <div class="mb-6">
